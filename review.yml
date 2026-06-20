@@ -1,0 +1,79 @@
+aid: chatbase
+name: Chatbase
+review:
+  question: Does Chatbase expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Per API Evangelist scope, HTTP streaming (Server-Sent-Events-style)
+    responses are in scope for AsyncAPI modeling. Chatbase's only streaming
+    surface is the POST /api/v1/chat endpoint with stream=true, which returns
+    the agent reply word by word as a raw HTTP text stream (one-way HTTP
+    streaming, not WebSocket). No AsyncAPI document was authored at this time;
+    the streaming behavior is already captured on the /chat operation in the
+    OpenAPI specification (text/plain streamed response). No WebSocket surface
+    was modeled because none is documented.
+findings:
+  summary: |
+    Chatbase does not publish a documented public WebSocket API. The platform
+    exposes a REST API under https://www.chatbase.co/api/v1 authenticated with
+    a Bearer API key. Streaming for the chat endpoint is delivered as a
+    one-way HTTP text stream via the stream=true parameter on the REST POST
+    /chat endpoint, not a WebSocket. A newer API v2 (available from the
+    Standard plan) is documented as adding structured error codes,
+    cursor-based pagination, and SSE streaming, but it remains HTTP-based and
+    not WebSocket. No realtime bidirectional (ws:// or wss://) endpoint is
+    documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://www.chatbase.co/api/v1
+      documented: true
+    - protocol: HTTP Streaming
+      scheme: https
+      note: Word-by-word raw text stream returned by POST /api/v1/chat when stream=true; API v2 documents SSE streaming. One-way HTTP streaming, not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Chatbase's API reference or developer guides as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://www.chatbase.co/api/v1/chat
+    - POST   https://www.chatbase.co/api/v1/create-chatbot
+    - POST   https://www.chatbase.co/api/v1/update-chatbot-data
+    - POST   https://www.chatbase.co/api/v1/update-chatbot-settings
+    - GET    https://www.chatbase.co/api/v1/get-chatbots
+    - DELETE https://www.chatbase.co/api/v1/delete-chatbot
+    - GET    https://www.chatbase.co/api/v1/get-conversations
+    - GET    https://www.chatbase.co/api/v1/get-leads
+    - POST   https://www.chatbase.co/api/v1/chatbots/{chatbotId}/contacts
+    - GET    https://www.chatbase.co/api/v1/chatbots/{chatbotId}/contacts
+    - GET    https://www.chatbase.co/api/v1/chatbots/{chatbotId}/contacts/{contactId}
+    - PATCH  https://www.chatbase.co/api/v1/chatbots/{chatbotId}/contacts/{contactId}
+    - DELETE https://www.chatbase.co/api/v1/chatbots/{chatbotId}/contacts/{contactId}
+    - POST   https://www.chatbase.co/api/v1/chatbots/{chatbotId}/custom-attributes
+    - GET    https://www.chatbase.co/api/v1/chatbots/{chatbotId}/custom-attributes
+    - PUT    https://www.chatbase.co/api/v1/chatbots/{chatbotId}/custom-attributes/{name}
+sources:
+  - url: https://www.chatbase.co/docs/developer-guides/api-integration
+    type: Documentation
+    note: Lists REST base URL https://www.chatbase.co/api/v1 and Bearer auth; no WebSocket mentioned.
+  - url: https://www.chatbase.co/docs/developer-guides/api/chat
+    type: APIReference
+    note: Chat endpoint streams via stream=true as raw HTTP text; not WebSocket.
+  - url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
+    type: APIReference
+    note: Conversations retrieval is a GET REST endpoint with query filters.
+  - url: https://www.chatbase.co/docs/llms-full.txt
+    type: Documentation
+    note: Full documentation index; all documented endpoints are HTTPS REST.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. The only streaming surface is
+    one-way HTTP text streaming on POST /api/v1/chat (stream=true), which is
+    already represented on the chat operation in the OpenAPI specification.
+    No AsyncAPI document was authored at this time.

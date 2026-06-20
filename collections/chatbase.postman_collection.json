@@ -1,0 +1,457 @@
+{
+  "item": [
+    {
+      "name": "Chat",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Message an agent",
+          "request": {
+            "name": "Message an agent",
+            "description": {
+              "content": "Send a message to a chatbot and receive a response. Set stream=true to receive the reply word by word as raw text.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v1", "chat"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    { \"role\": \"user\", \"content\": \"<string>\" }\n  ],\n  \"chatbotId\": \"<string>\",\n  \"conversationId\": \"<string>\",\n  \"stream\": false,\n  \"temperature\": 0\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Chatbots",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Create a chatbot",
+          "request": {
+            "name": "Create a chatbot",
+            "description": {
+              "content": "Create a new chatbot/agent and train it from the supplied sources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v1", "create-chatbot"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chatbotName\": \"<string>\",\n  \"sourceText\": \"<string>\",\n  \"urlsToScrape\": []\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update and retrain a chatbot",
+          "request": {
+            "name": "Update and retrain a chatbot",
+            "description": {
+              "content": "Update a chatbot, changing its name and/or replacing its training material.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v1", "update-chatbot-data"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chatbotId\": \"<string>\",\n  \"chatbotName\": \"<string>\",\n  \"sourceText\": \"<string>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update chatbot settings",
+          "request": {
+            "name": "Update chatbot settings",
+            "description": {
+              "content": "Update configuration settings for an existing chatbot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v1", "update-chatbot-settings"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chatbotId\": \"<string>\",\n  \"chatbotName\": \"<string>\",\n  \"model\": \"<string>\",\n  \"temperature\": 0,\n  \"instructions\": \"<string>\",\n  \"visibility\": \"private\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List chatbots",
+          "request": {
+            "name": "List chatbots",
+            "description": {
+              "content": "Retrieve all chatbots for the authenticated account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v1", "get-chatbots"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null,
+            "body": {}
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a chatbot",
+          "request": {
+            "name": "Delete a chatbot",
+            "description": {
+              "content": "Permanently delete a chatbot and all of its associated data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v1", "delete-chatbot"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chatbotId\": \"<string>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Conversations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Get conversations",
+          "request": {
+            "name": "Get conversations",
+            "description": {
+              "content": "Retrieve conversations for a specific chatbot, optionally filtered by date range and source, with pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v1", "get-conversations"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                { "key": "chatbotId", "value": "<string>" },
+                { "key": "startDate", "value": "2023-01-01" },
+                { "key": "endDate", "value": "2023-12-12" },
+                { "key": "page", "value": "1" },
+                { "key": "size", "value": "20" }
+              ],
+              "variable": []
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null,
+            "body": {}
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Leads",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Get leads",
+          "request": {
+            "name": "Get leads",
+            "description": {
+              "content": "Retrieve leads captured by a specific chatbot's lead form.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v1", "get-leads"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                { "key": "chatbotId", "value": "<string>" },
+                { "key": "page", "value": "1" },
+                { "key": "size", "value": "20" }
+              ],
+              "variable": []
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null,
+            "body": {}
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Contacts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Create contacts",
+          "request": {
+            "name": "Create contacts",
+            "description": {
+              "content": "Create one or more contacts for a chatbot (up to 1000 per request).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v1", "chatbots", ":chatbotId", "contacts"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "chatbotId", "value": "<string>" }]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contacts\": [\n    { \"name\": \"<string>\", \"email\": \"<string>\", \"phone\": \"<string>\" }\n  ]\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List contacts",
+          "request": {
+            "name": "List contacts",
+            "description": {
+              "content": "Retrieve a paginated list of contacts for a chatbot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v1", "chatbots", ":chatbotId", "contacts"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                { "key": "limit", "value": "20" },
+                { "key": "cursor", "value": "<string>" }
+              ],
+              "variable": [{ "key": "chatbotId", "value": "<string>" }]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null,
+            "body": {}
+          },
+          "response": []
+        },
+        {
+          "name": "Get a contact",
+          "request": {
+            "name": "Get a contact",
+            "description": {},
+            "url": {
+              "path": ["api", "v1", "chatbots", ":chatbotId", "contacts", ":contactId"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "chatbotId", "value": "<string>" },
+                { "key": "contactId", "value": "<string>" }
+              ]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null,
+            "body": {}
+          },
+          "response": []
+        },
+        {
+          "name": "Update a contact",
+          "request": {
+            "name": "Update a contact",
+            "description": {},
+            "url": {
+              "path": ["api", "v1", "chatbots", ":chatbotId", "contacts", ":contactId"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "chatbotId", "value": "<string>" },
+                { "key": "contactId", "value": "<string>" }
+              ]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a contact",
+          "request": {
+            "name": "Delete a contact",
+            "description": {},
+            "url": {
+              "path": ["api", "v1", "chatbots", ":chatbotId", "contacts", ":contactId"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "chatbotId", "value": "<string>" },
+                { "key": "contactId", "value": "<string>" }
+              ]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "DELETE",
+            "auth": null,
+            "body": {}
+          },
+          "response": []
+        },
+        {
+          "name": "Create a custom attribute",
+          "request": {
+            "name": "Create a custom attribute",
+            "description": {
+              "content": "Define a new custom attribute on the contact schema for a chatbot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": ["api", "v1", "chatbots", ":chatbotId", "custom-attributes"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "chatbotId", "value": "<string>" }]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"text\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get the custom-attribute schema",
+          "request": {
+            "name": "Get the custom-attribute schema",
+            "description": {},
+            "url": {
+              "path": ["api", "v1", "chatbots", ":chatbotId", "custom-attributes"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "chatbotId", "value": "<string>" }]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET",
+            "auth": null,
+            "body": {}
+          },
+          "response": []
+        },
+        {
+          "name": "Update a custom attribute",
+          "request": {
+            "name": "Update a custom attribute",
+            "description": {},
+            "url": {
+              "path": ["api", "v1", "chatbots", ":chatbotId", "custom-attributes", ":name"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "chatbotId", "value": "<string>" },
+                { "key": "name", "value": "<string>" }
+              ]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"text\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.chatbase.co",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{bearerToken}}" }
+    ]
+  },
+  "info": {
+    "_postman_id": "c4a7b1e2-3d6f-4e8a-9b2c-1f5a7d9e0c34",
+    "name": "Chatbase API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Chatbase custom AI chatbot / AI agent platform. Message an agent (with streaming), create and retrain chatbots/agents, retrieve conversations and leads, and manage contacts.\n\nContact Support:\n Name: Chatbase Support\n URL: https://www.chatbase.co/docs",
+      "type": "text/plain"
+    }
+  }
+}

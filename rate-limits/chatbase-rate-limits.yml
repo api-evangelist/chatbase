@@ -1,0 +1,66 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Chatbase
+providerId: chatbase
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- Chatbot
+- AI Agent
+- Customer Support
+- Conversational AI
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Chatbase enforces account-level usage governance primarily through monthly
+  message credits tied to the subscription plan (Free 50, Hobby 500, Standard
+  4,000, Pro 15,000, Enterprise custom). Every AI response consumes credits,
+  and per-response cost depends on the chosen model. In addition, the REST
+  API applies request rate limiting per API key; specific per-endpoint
+  request-per-minute values are not published and are not reconciled in this
+  artifact. Training-data size and number of agents are also capped per plan.
+notes: >-
+  Verify current message-credit allotments, per-model credit costs, and any
+  per-key request-per-minute limits on the Chatbase pricing and developer
+  documentation pages during reconciliation. API access requires the Standard
+  plan or higher.
+sources:
+- https://www.chatbase.co/pricing
+- https://www.chatbase.co/docs/developer-guides/api-integration
+responseCodes:
+  throttled: 429
+limits:
+- name: Monthly Message Credits
+  scope: account
+  metric: credits
+  limit: plan-based (Free 50 / Hobby 500 / Standard 4,000 / Pro 15,000 / Enterprise custom)
+  notes: Each AI response consumes credits; per-response cost depends on the model.
+- name: API Requests Per Minute
+  scope: api_key
+  metric: requests
+  limit: see provider documentation
+  notes: REST API requests are rate limited per API key; exact RPM not published.
+- name: AI Agents
+  scope: account
+  metric: agents
+  limit: plan-based (Free 1; more on paid plans; extra agents available as add-on)
+  notes: Number of agents is capped per plan.
+- name: Training Data Size
+  scope: account
+  metric: bytes
+  limit: plan-based (Free 400 KB / Hobby 10 MB / Standard 20 MB / Pro 40 MB)
+  notes: Total size of training sources per account is capped per plan.
+policies:
+- name: Credit-Based Metering
+  description: Usage is governed by monthly message credits that reset each billing cycle; auto-recharge add-on credits can extend capacity.
+- name: Tiered Limits
+  description: Credit allotments, agent counts, training size, and feature access (including API access) increase with the subscription tier.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter on HTTP 429 responses and honor any Retry-After header.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

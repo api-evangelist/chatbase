@@ -1,0 +1,267 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chatbase API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Message an agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.chatbase.co/api/v1/chat",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"messages\": [ { \"role\": \"user\", \"content\": \"<string>\" } ],\n  \"chatbotId\": \"<string>\",\n  \"stream\": false\n}"
+            }
+          },
+          "docs": "Send a message to a chatbot and receive a response. Set stream=true to receive the reply word by word as raw text."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Chatbots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a chatbot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.chatbase.co/api/v1/create-chatbot",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"chatbotName\": \"<string>\",\n  \"sourceText\": \"<string>\"\n}"
+            }
+          },
+          "docs": "Create a new chatbot/agent and train it from the supplied sources."
+        },
+        {
+          "info": {
+            "name": "Update and retrain a chatbot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.chatbase.co/api/v1/update-chatbot-data",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"chatbotId\": \"<string>\",\n  \"chatbotName\": \"<string>\",\n  \"sourceText\": \"<string>\"\n}"
+            }
+          },
+          "docs": "Update a chatbot, changing its name and/or replacing its training material."
+        },
+        {
+          "info": {
+            "name": "Update chatbot settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.chatbase.co/api/v1/update-chatbot-settings",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"chatbotId\": \"<string>\"\n}"
+            }
+          },
+          "docs": "Update configuration settings for an existing chatbot."
+        },
+        {
+          "info": {
+            "name": "List chatbots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.chatbase.co/api/v1/get-chatbots"
+          },
+          "docs": "Retrieve all chatbots for the authenticated account."
+        },
+        {
+          "info": {
+            "name": "Delete a chatbot",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://www.chatbase.co/api/v1/delete-chatbot",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"chatbotId\": \"<string>\"\n}"
+            }
+          },
+          "docs": "Permanently delete a chatbot and all of its associated data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.chatbase.co/api/v1/get-conversations?chatbotId=<string>&startDate=2023-01-01&endDate=2023-12-12&page=1&size=20"
+          },
+          "docs": "Retrieve conversations for a specific chatbot, optionally filtered by date range and source, with pagination."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Leads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get leads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.chatbase.co/api/v1/get-leads?chatbotId=<string>&page=1&size=20"
+          },
+          "docs": "Retrieve leads captured by a specific chatbot's lead form."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.chatbase.co/api/v1/chatbots/{chatbotId}/contacts",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"contacts\": [ { \"name\": \"<string>\", \"email\": \"<string>\" } ]\n}"
+            }
+          },
+          "docs": "Create one or more contacts for a chatbot (up to 1000 per request)."
+        },
+        {
+          "info": {
+            "name": "List contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.chatbase.co/api/v1/chatbots/{chatbotId}/contacts?limit=20"
+          },
+          "docs": "Retrieve a paginated list of contacts for a chatbot."
+        },
+        {
+          "info": {
+            "name": "Get a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.chatbase.co/api/v1/chatbots/{chatbotId}/contacts/{contactId}"
+          },
+          "docs": "Retrieve a single contact by ID."
+        },
+        {
+          "info": {
+            "name": "Update a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://www.chatbase.co/api/v1/chatbots/{chatbotId}/contacts/{contactId}",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\"\n}"
+            }
+          },
+          "docs": "Update an existing contact's information."
+        },
+        {
+          "info": {
+            "name": "Delete a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://www.chatbase.co/api/v1/chatbots/{chatbotId}/contacts/{contactId}"
+          },
+          "docs": "Permanently delete a contact."
+        },
+        {
+          "info": {
+            "name": "Create a custom attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.chatbase.co/api/v1/chatbots/{chatbotId}/custom-attributes",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"name\": \"<string>\",\n  \"type\": \"text\"\n}"
+            }
+          },
+          "docs": "Define a new custom attribute on the contact schema for a chatbot."
+        },
+        {
+          "info": {
+            "name": "Get the custom-attribute schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.chatbase.co/api/v1/chatbots/{chatbotId}/custom-attributes"
+          },
+          "docs": "Retrieve the custom-attribute schema for contacts."
+        },
+        {
+          "info": {
+            "name": "Update a custom attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://www.chatbase.co/api/v1/chatbots/{chatbotId}/custom-attributes/{name}",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"name\": \"<string>\",\n  \"type\": \"text\"\n}"
+            }
+          },
+          "docs": "Update an existing custom attribute."
+        }
+      ]
+    }
+  ]
+}

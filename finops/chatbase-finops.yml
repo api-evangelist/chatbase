@@ -1,0 +1,110 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Chatbase
+providerId: chatbase
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- AI
+- Chatbot
+- AI Agent
+- Customer Support
+- Conversational AI
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Chatbase spend. Chatbase bills a fixed monthly (or discounted
+  annual) subscription per plan that includes a monthly message-credit
+  allotment. Each AI response consumes message credits, with per-response cost
+  varying by model. Overage is handled via auto-recharge credit packs. Extra
+  AI agents and branding removal are additional recurring charges. Plan tier
+  also governs training-data size, team seats, and feature access (API access
+  starts on Standard).
+notes: >-
+  Per-plan prices, credit allotments, and per-model credit costs are subject
+  to change; verify against the Chatbase pricing page during reconciliation.
+sources:
+- https://www.chatbase.co/pricing
+- https://www.chatbase.co/docs
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Chatbase
+serviceCategory: AI and Machine Learning
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Chatbase
+  ServiceCategory: AI and Machine Learning
+  ProviderName: Chatbase
+  PublisherName: Chatbase
+  InvoiceIssuerName: Chatbase
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: plan_subscription
+  description: Recurring monthly or annual subscription fee for the selected plan tier.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: message_credits
+  description: Message credits consumed by AI responses; per-response cost varies by model.
+  unit: credits
+  aggregation: sum
+  dimensions:
+  - account
+  - chatbot
+  - model
+- name: auto_recharge_credits
+  description: Additional message credits purchased via auto-recharge when the plan allotment is exhausted.
+  unit: credits
+  aggregation: sum
+  dimensions:
+  - account
+- name: extra_agents
+  description: Additional AI agents beyond the plan allotment, billed per agent per year.
+  unit: agents
+  aggregation: sum
+  dimensions:
+  - account
+- name: branding_removal
+  description: Annual add-on to remove Chatbase branding from the agent widget.
+  unit: addon
+  aggregation: sum
+  dimensions:
+  - account
+- name: training_data
+  description: Training-data size consumed against the plan cap.
+  unit: bytes
+  aggregation: max
+  dimensions:
+  - account
+  - chatbot
+principles:
+- name: Visibility
+  description: Track message-credit burn per agent and model in the Chatbase dashboard; watch for auto-recharge events that signal overage.
+- name: Allocation
+  description: Map agents and API keys to teams or customers; attribute credit consumption and seats to internal cost centers.
+- name: Optimization
+  description: Route responses to lower-credit standard models where quality allows; reserve premium models for high-value interactions; right-size the plan tier to actual credit usage.
+- name: Accountability
+  description: Assign an owner per workspace and agent; review monthly credit spend and add-on charges against budget before renewing or upgrading.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
