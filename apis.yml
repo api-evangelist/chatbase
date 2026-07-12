@@ -122,6 +122,14 @@ apis:
   description: Retrieve leads collected by a chatbot's lead-capture form for a
     specific chatbot, returning name, email, phone, and submission metadata.
 common:
+- type: TrustCenter
+  url: security/chatbase-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/chatbase-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/chatbase-domain-security.yml
+- type: Authentication
+  url: authentication/chatbase-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/chatbase
 - type: LinkedIn
@@ -136,6 +144,8 @@ common:
   url: rate-limits/chatbase-rate-limits.yml
 - type: FinOps
   url: finops/chatbase-finops.yml
+- type: Blog
+  url: https://www.chatbase.co/blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
