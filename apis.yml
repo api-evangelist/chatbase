@@ -122,6 +122,8 @@ apis:
   description: Retrieve leads collected by a chatbot's lead-capture form for a
     specific chatbot, returning name, email, phone, and submission metadata.
 common:
+- type: AgenticAccess
+  url: agentic-access/chatbase-agentic-access.yml
 - type: TrustCenter
   url: security/chatbase-trust-center.yml
 - type: VulnerabilityDisclosure
