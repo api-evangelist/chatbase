@@ -1,0 +1,124 @@
+openapi: 3.0.1
+info:
+  title: Chatbase Chat API
+  description: REST API for the Chatbase custom AI chatbot / AI agent platform. Message an agent (with streaming), create and retrain chatbots/agents, update settings, list and delete agents, manage agent images, retrieve conversation history and captured leads, and manage contacts and their custom-attribute schema. All requests are authenticated with a Bearer API key created in the Chatbase dashboard under Workspace Settings -> API Keys.
+  termsOfService: https://www.chatbase.co/legal/terms
+  contact:
+    name: Chatbase Support
+    url: https://www.chatbase.co/docs
+  version: '1.0'
+servers:
+- url: https://www.chatbase.co/api/v1
+security:
+- bearerAuth: []
+tags:
+- name: Chat
+  description: Message an agent and receive a response, with optional streaming.
+paths:
+  /chat:
+    post:
+      operationId: chat
+      tags:
+      - Chat
+      summary: Message an agent
+      description: Send a message to a chatbot and receive a response. Provide the prior turns in the messages array (roles user and assistant). Set stream=true to receive the response word by word as a raw text stream instead of a single JSON body.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+      responses:
+        '200':
+          description: The agent response. When stream=false a JSON body is returned; when stream=true the response is streamed as raw text.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+            text/plain:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Message:
+      type: object
+      required:
+      - role
+      - content
+      properties:
+        role:
+          type: string
+          enum:
+          - user
+          - assistant
+          description: Who sent the message. user is the human; assistant is the chatbot.
+        content:
+          type: string
+          description: The text content of the message.
+    ChatRequest:
+      type: object
+      required:
+      - messages
+      - chatbotId
+      properties:
+        messages:
+          type: array
+          description: The chat history. A maximum of the most recent messages is used as context.
+          items:
+            $ref: '#/components/schemas/Message'
+        chatbotId:
+          type: string
+          description: The ID of the chatbot/agent to message.
+        conversationId:
+          type: string
+          description: Optional ID of an existing conversation to continue.
+        stream:
+          type: boolean
+          default: false
+          description: When true, the response is streamed word by word as raw text.
+        temperature:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Sampling temperature controlling response randomness.
+        model:
+          type: string
+          description: Optional model override for this request.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    ChatResponse:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The agent's generated response.
+        conversationId:
+          type: string
+          description: The conversation this turn belongs to.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API key created in the Chatbase dashboard (Workspace Settings -> API Keys).

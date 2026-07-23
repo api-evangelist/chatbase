@@ -1,0 +1,132 @@
+openapi: 3.0.1
+info:
+  title: Chatbase Chat Conversations API
+  description: REST API for the Chatbase custom AI chatbot / AI agent platform. Message an agent (with streaming), create and retrain chatbots/agents, update settings, list and delete agents, manage agent images, retrieve conversation history and captured leads, and manage contacts and their custom-attribute schema. All requests are authenticated with a Bearer API key created in the Chatbase dashboard under Workspace Settings -> API Keys.
+  termsOfService: https://www.chatbase.co/legal/terms
+  contact:
+    name: Chatbase Support
+    url: https://www.chatbase.co/docs
+  version: '1.0'
+servers:
+- url: https://www.chatbase.co/api/v1
+security:
+- bearerAuth: []
+tags:
+- name: Conversations
+  description: Retrieve conversation history for a chatbot.
+paths:
+  /get-conversations:
+    get:
+      operationId: getConversations
+      tags:
+      - Conversations
+      summary: Get conversations
+      description: Retrieve conversations for a specific chatbot, optionally filtered by date range and source, with pagination.
+      parameters:
+      - name: chatbotId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The ID of the chatbot to retrieve conversations for.
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+        description: Inclusive lower bound on conversation date (YYYY-MM-DD).
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+        description: Inclusive upper bound on conversation date (YYYY-MM-DD).
+      - name: filteredSources
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Comma-separated list of sources to filter by (e.g. API, Widget or iframe).
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: Page number for pagination.
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 20
+        description: Number of conversations per page.
+      responses:
+        '200':
+          description: A paginated list of conversations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Conversation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Message:
+      type: object
+      required:
+      - role
+      - content
+      properties:
+        role:
+          type: string
+          enum:
+          - user
+          - assistant
+          description: Who sent the message. user is the human; assistant is the chatbot.
+        content:
+          type: string
+          description: The text content of the message.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    Conversation:
+      type: object
+      properties:
+        id:
+          type: string
+        chatbotId:
+          type: string
+        source:
+          type: string
+          description: Where the conversation originated (e.g. API, Widget or iframe).
+        createdAt:
+          type: string
+          format: date-time
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API key created in the Chatbase dashboard (Workspace Settings -> API Keys).

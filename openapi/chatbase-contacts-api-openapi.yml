@@ -1,0 +1,303 @@
+openapi: 3.0.1
+info:
+  title: Chatbase Chat Contacts API
+  description: REST API for the Chatbase custom AI chatbot / AI agent platform. Message an agent (with streaming), create and retrain chatbots/agents, update settings, list and delete agents, manage agent images, retrieve conversation history and captured leads, and manage contacts and their custom-attribute schema. All requests are authenticated with a Bearer API key created in the Chatbase dashboard under Workspace Settings -> API Keys.
+  termsOfService: https://www.chatbase.co/legal/terms
+  contact:
+    name: Chatbase Support
+    url: https://www.chatbase.co/docs
+  version: '1.0'
+servers:
+- url: https://www.chatbase.co/api/v1
+security:
+- bearerAuth: []
+tags:
+- name: Contacts
+  description: Manage contacts and custom attributes for a chatbot.
+paths:
+  /chatbots/{chatbotId}/contacts:
+    post:
+      operationId: createContacts
+      tags:
+      - Contacts
+      summary: Create contacts
+      description: Create one or more contacts for a chatbot (up to 1000 per request).
+      parameters:
+      - $ref: '#/components/parameters/ChatbotIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contacts:
+                  type: array
+                  maxItems: 1000
+                  items:
+                    $ref: '#/components/schemas/ContactInput'
+      responses:
+        '200':
+          description: The created contacts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Contact'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: listContacts
+      tags:
+      - Contacts
+      summary: List contacts
+      description: Retrieve a paginated list of contacts for a chatbot.
+      parameters:
+      - $ref: '#/components/parameters/ChatbotIdPath'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Maximum number of contacts to return per page.
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Cursor for fetching the next page of results.
+      responses:
+        '200':
+          description: A paginated list of contacts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Contact'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chatbots/{chatbotId}/contacts/{contactId}:
+    get:
+      operationId: getContact
+      tags:
+      - Contacts
+      summary: Get a contact
+      parameters:
+      - $ref: '#/components/parameters/ChatbotIdPath'
+      - $ref: '#/components/parameters/ContactIdPath'
+      responses:
+        '200':
+          description: The requested contact.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateContact
+      tags:
+      - Contacts
+      summary: Update a contact
+      parameters:
+      - $ref: '#/components/parameters/ChatbotIdPath'
+      - $ref: '#/components/parameters/ContactIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactInput'
+      responses:
+        '200':
+          description: The updated contact.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteContact
+      tags:
+      - Contacts
+      summary: Delete a contact
+      parameters:
+      - $ref: '#/components/parameters/ChatbotIdPath'
+      - $ref: '#/components/parameters/ContactIdPath'
+      responses:
+        '200':
+          description: Deletion confirmation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chatbots/{chatbotId}/custom-attributes:
+    post:
+      operationId: createCustomAttribute
+      tags:
+      - Contacts
+      summary: Create a custom attribute
+      description: Define a new custom attribute on the contact schema for a chatbot.
+      parameters:
+      - $ref: '#/components/parameters/ChatbotIdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomAttribute'
+      responses:
+        '200':
+          description: The created custom attribute.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomAttribute'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: getCustomAttributes
+      tags:
+      - Contacts
+      summary: Get the custom-attribute schema
+      parameters:
+      - $ref: '#/components/parameters/ChatbotIdPath'
+      responses:
+        '200':
+          description: The custom-attribute schema for contacts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomAttribute'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chatbots/{chatbotId}/custom-attributes/{name}:
+    put:
+      operationId: updateCustomAttribute
+      tags:
+      - Contacts
+      summary: Update a custom attribute
+      parameters:
+      - $ref: '#/components/parameters/ChatbotIdPath'
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The identifier of the custom attribute to update.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomAttribute'
+      responses:
+        '200':
+          description: The updated custom attribute.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomAttribute'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    CustomAttribute:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: The attribute identifier.
+        type:
+          type: string
+          enum:
+          - text
+          - number
+          - boolean
+          - date
+          description: The data type of the attribute.
+    Status:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+    ContactInput:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        customAttributes:
+          type: object
+          additionalProperties: true
+          description: Values for any custom attributes defined on the contact schema.
+    Contact:
+      allOf:
+      - $ref: '#/components/schemas/ContactInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          createdAt:
+            type: string
+            format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ContactIdPath:
+      name: contactId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the contact.
+    ChatbotIdPath:
+      name: chatbotId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the chatbot.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API key created in the Chatbase dashboard (Workspace Settings -> API Keys).

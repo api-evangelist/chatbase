@@ -1,0 +1,238 @@
+openapi: 3.0.1
+info:
+  title: Chatbase Chat Chatbots API
+  description: REST API for the Chatbase custom AI chatbot / AI agent platform. Message an agent (with streaming), create and retrain chatbots/agents, update settings, list and delete agents, manage agent images, retrieve conversation history and captured leads, and manage contacts and their custom-attribute schema. All requests are authenticated with a Bearer API key created in the Chatbase dashboard under Workspace Settings -> API Keys.
+  termsOfService: https://www.chatbase.co/legal/terms
+  contact:
+    name: Chatbase Support
+    url: https://www.chatbase.co/docs
+  version: '1.0'
+servers:
+- url: https://www.chatbase.co/api/v1
+security:
+- bearerAuth: []
+tags:
+- name: Chatbots
+  description: Create, retrain, configure, list, and delete chatbots/agents.
+paths:
+  /create-chatbot:
+    post:
+      operationId: createChatbot
+      tags:
+      - Chatbots
+      summary: Create a chatbot
+      description: Create a new chatbot/agent and train it from the supplied sources.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateChatbotRequest'
+      responses:
+        '200':
+          description: The created chatbot.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chatbot'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /update-chatbot-data:
+    post:
+      operationId: updateChatbotData
+      tags:
+      - Chatbots
+      summary: Update and retrain a chatbot
+      description: Update a chatbot, changing its name and/or replacing its training material. The agent is retrained on the new content.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateChatbotDataRequest'
+      responses:
+        '200':
+          description: The updated chatbot.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chatbot'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /update-chatbot-settings:
+    post:
+      operationId: updateChatbotSettings
+      tags:
+      - Chatbots
+      summary: Update chatbot settings
+      description: Update configuration settings for an existing chatbot.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateChatbotSettingsRequest'
+      responses:
+        '200':
+          description: Confirmation of the updated settings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chatbot'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /get-chatbots:
+    get:
+      operationId: getChatbots
+      tags:
+      - Chatbots
+      summary: List chatbots
+      description: Retrieve all chatbots for the authenticated account.
+      responses:
+        '200':
+          description: The list of chatbots on the account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chatbots:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Chatbot'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /delete-chatbot:
+    delete:
+      operationId: deleteChatbot
+      tags:
+      - Chatbots
+      summary: Delete a chatbot
+      description: Permanently delete a chatbot and all of its associated data.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - chatbotId
+              properties:
+                chatbotId:
+                  type: string
+      responses:
+        '200':
+          description: Deletion confirmation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    CreateChatbotRequest:
+      type: object
+      required:
+      - chatbotName
+      - sourceText
+      properties:
+        chatbotName:
+          type: string
+          description: Display name of the new chatbot.
+        sourceText:
+          type: string
+          description: Training text the agent is built from.
+        urlsToScrape:
+          type: array
+          items:
+            type: string
+          description: Optional list of URLs to crawl as training sources.
+    UpdateChatbotDataRequest:
+      type: object
+      required:
+      - chatbotId
+      properties:
+        chatbotId:
+          type: string
+          description: The ID of the chatbot to update.
+        chatbotName:
+          type: string
+          description: New display name for the chatbot.
+        sourceText:
+          type: string
+          description: Replacement training text; the agent is retrained on it.
+    Status:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    Chatbot:
+      type: object
+      properties:
+        chatbotId:
+          type: string
+        chatbotName:
+          type: string
+        model:
+          type: string
+        temperature:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+    UpdateChatbotSettingsRequest:
+      type: object
+      required:
+      - chatbotId
+      properties:
+        chatbotId:
+          type: string
+        chatbotName:
+          type: string
+        model:
+          type: string
+        temperature:
+          type: number
+        instructions:
+          type: string
+          description: System prompt / base instructions for the agent.
+        visibility:
+          type: string
+          enum:
+          - private
+          - public
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API key created in the Chatbase dashboard (Workspace Settings -> API Keys).

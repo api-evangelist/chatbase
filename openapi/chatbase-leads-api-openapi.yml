@@ -1,0 +1,107 @@
+openapi: 3.0.1
+info:
+  title: Chatbase Chat Leads API
+  description: REST API for the Chatbase custom AI chatbot / AI agent platform. Message an agent (with streaming), create and retrain chatbots/agents, update settings, list and delete agents, manage agent images, retrieve conversation history and captured leads, and manage contacts and their custom-attribute schema. All requests are authenticated with a Bearer API key created in the Chatbase dashboard under Workspace Settings -> API Keys.
+  termsOfService: https://www.chatbase.co/legal/terms
+  contact:
+    name: Chatbase Support
+    url: https://www.chatbase.co/docs
+  version: '1.0'
+servers:
+- url: https://www.chatbase.co/api/v1
+security:
+- bearerAuth: []
+tags:
+- name: Leads
+  description: Retrieve leads captured by a chatbot.
+paths:
+  /get-leads:
+    get:
+      operationId: getLeads
+      tags:
+      - Leads
+      summary: Get leads
+      description: Retrieve leads captured by a specific chatbot's lead form.
+      parameters:
+      - name: chatbotId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The ID of the chatbot to retrieve leads for.
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: A list of captured leads.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Lead'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    Lead:
+      type: object
+      properties:
+        id:
+          type: string
+        chatbotId:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API key created in the Chatbase dashboard (Workspace Settings -> API Keys).
