@@ -7,7 +7,20 @@ description: Chatbase is a custom AI chatbot and AI agent platform for customer 
   site, and connect it to channels and tools. The Chatbase REST API lets developers
   message agents (with streaming), create and update chatbots/agents, retrieve
   conversations and leads, and manage contacts.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/chatbase.png
 tags:
 - AI
 - Chatbot
@@ -20,107 +33,144 @@ specificationVersion: '0.19'
 apis:
 - aid: chatbase:chatbase-chat-api
   name: Chatbase Chat API
+  description: Message an agent and receive a response, with optional streaming.
+  humanURL: https://www.chatbase.co/docs/developer-guides/api-integration
+  baseURL: https://www.chatbase.co/api/v1
   tags:
   - Chat
-  - Messages
-  - Streaming
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/chatbase-chat-api-openapi.yml
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api-integration
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/chat
+  - type: Postman
+    url: collections/chatbase.postman_collection.json
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/create-chatbot
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/update-chatbot-data
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api/get-leads
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/get-leads
+- aid: chatbase:chatbase-chatbots-api
+  name: Chatbase Chatbots API
+  description: Create, retrain, configure, list, and delete chatbots/agents.
   humanURL: https://www.chatbase.co/docs/developer-guides/api-integration
   baseURL: https://www.chatbase.co/api/v1
-  properties:
-  - url: https://www.chatbase.co/docs/developer-guides/api-integration
-    type: Documentation
-  - url: https://www.chatbase.co/docs/developer-guides/api/chat
-    type: APIReference
-  - url: openapi/chatbase-openapi.yml
-    type: OpenAPI
-  - url: collections/chatbase.postman_collection.json
-    type: Postman
-  description: Send a message to a Chatbase agent and receive a response. Accepts a
-    messages array with user and assistant roles, supports continuing an existing
-    conversation, temperature control, and word-by-word streaming via stream=true.
-- aid: chatbase:chatbase-chatbots-agents-api
-  name: Chatbase Chatbots and Agents API
   tags:
   - Chatbots
-  - Agents
-  - Management
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/chatbase-chatbots-api-openapi.yml
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api-integration
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/chat
+  - type: Postman
+    url: collections/chatbase.postman_collection.json
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/create-chatbot
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/update-chatbot-data
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api/get-leads
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/get-leads
+- aid: chatbase:chatbase-contacts-api
+  name: Chatbase Contacts API
+  description: Manage contacts and custom attributes for a chatbot.
   humanURL: https://www.chatbase.co/docs/developer-guides/api-integration
   baseURL: https://www.chatbase.co/api/v1
+  tags:
+  - Contacts
   properties:
-  - url: https://www.chatbase.co/docs/developer-guides/api-integration
-    type: Documentation
-  - url: https://www.chatbase.co/docs/developer-guides/api/create-chatbot
-    type: APIReference
-  - url: openapi/chatbase-openapi.yml
-    type: OpenAPI
-  - url: collections/chatbase.postman_collection.json
-    type: Postman
-  description: Programmatically create chatbots/agents from training text, retrain
-    and rename them, update settings, list all agents on the account, delete an
-    agent, and manage agent icons and profile pictures.
+  - type: OpenAPI
+    url: openapi/chatbase-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api-integration
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/chat
+  - type: Postman
+    url: collections/chatbase.postman_collection.json
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/create-chatbot
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/update-chatbot-data
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api/get-leads
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/get-leads
 - aid: chatbase:chatbase-conversations-api
   name: Chatbase Conversations API
-  tags:
-  - Conversations
-  - History
-  - Transcripts
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.chatbase.co/docs/developer-guides/api/get-conversations
-  baseURL: https://www.chatbase.co/api/v1
-  properties:
-  - url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
-    type: Documentation
-  - url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
-    type: APIReference
-  - url: openapi/chatbase-openapi.yml
-    type: OpenAPI
-  - url: collections/chatbase.postman_collection.json
-    type: Postman
-  description: Retrieve a paginated history of conversations for a specific chatbot,
-    filterable by date range and source, with full message transcripts.
-- aid: chatbase:chatbase-sources-data-api
-  name: Chatbase Sources and Data API
-  tags:
-  - Sources
-  - Training Data
-  - Contacts
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: Retrieve conversation history for a chatbot.
   humanURL: https://www.chatbase.co/docs/developer-guides/api-integration
   baseURL: https://www.chatbase.co/api/v1
+  tags:
+  - Conversations
   properties:
-  - url: https://www.chatbase.co/docs/developer-guides/api-integration
-    type: Documentation
-  - url: https://www.chatbase.co/docs/developer-guides/api/update-chatbot-data
-    type: APIReference
-  - url: openapi/chatbase-openapi.yml
-    type: OpenAPI
-  - url: collections/chatbase.postman_collection.json
-    type: Postman
-  description: Update and retrain an agent with new training content, and manage
-    contacts and their custom-attribute schema for a chatbot (create, list, get,
-    update, and delete contacts and custom attributes).
+  - type: OpenAPI
+    url: openapi/chatbase-conversations-api-openapi.yml
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api-integration
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/chat
+  - type: Postman
+    url: collections/chatbase.postman_collection.json
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/create-chatbot
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/update-chatbot-data
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api/get-leads
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/get-leads
 - aid: chatbase:chatbase-leads-api
   name: Chatbase Leads API
+  description: Retrieve leads captured by a chatbot.
+  humanURL: https://www.chatbase.co/docs/developer-guides/api-integration
+  baseURL: https://www.chatbase.co/api/v1
   tags:
   - Leads
-  - Capture
-  - CRM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.chatbase.co/docs/developer-guides/api/get-leads
-  baseURL: https://www.chatbase.co/api/v1
   properties:
-  - url: https://www.chatbase.co/docs/developer-guides/api/get-leads
-    type: Documentation
-  - url: https://www.chatbase.co/docs/developer-guides/api/get-leads
-    type: APIReference
-  - url: openapi/chatbase-openapi.yml
-    type: OpenAPI
-  - url: collections/chatbase.postman_collection.json
-    type: Postman
-  description: Retrieve leads collected by a chatbot's lead-capture form for a
-    specific chatbot, returning name, email, phone, and submission metadata.
+  - type: OpenAPI
+    url: openapi/chatbase-leads-api-openapi.yml
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api-integration
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/chat
+  - type: Postman
+    url: collections/chatbase.postman_collection.json
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/create-chatbot
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/get-conversations
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/update-chatbot-data
+  - type: Documentation
+    url: https://www.chatbase.co/docs/developer-guides/api/get-leads
+  - type: APIReference
+    url: https://www.chatbase.co/docs/developer-guides/api/get-leads
 common:
 - type: AgenticAccess
   url: agentic-access/chatbase-agentic-access.yml
