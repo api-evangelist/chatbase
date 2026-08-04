@@ -1,0 +1,22 @@
+{
+  "provider": "chatbase",
+  "sources": [
+    "chatbase-chat-api-openapi.yml",
+    "chatbase-chatbots-api-openapi.yml",
+    "chatbase-contacts-api-openapi.yml",
+    "chatbase-conversations-api-openapi.yml",
+    "chatbase-leads-api-openapi.yml"
+  ],
+  "outputs": [
+    "chatbase-chat-api-openapi.yml",
+    "chatbase-chatbots-api-openapi.yml",
+    "chatbase-contacts-api-openapi.yml",
+    "chatbase-conversations-api-openapi.yml",
+    "chatbase-leads-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
