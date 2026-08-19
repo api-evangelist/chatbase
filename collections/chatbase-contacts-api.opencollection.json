@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chatbase Chat Contacts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.chatbase.co/api/v1/chatbots/:chatbotId/contacts",
+            "params": [
+              {
+                "name": "chatbotId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the chatbot."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of contacts to return per page."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for fetching the next page of results."
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of contacts for a chatbot."
+        },
+        {
+          "info": {
+            "name": "Create contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.chatbase.co/api/v1/chatbots/:chatbotId/contacts",
+            "params": [
+              {
+                "name": "chatbotId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the chatbot."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create one or more contacts for a chatbot (up to 1000 per request)."
+        },
+        {
+          "info": {
+            "name": "Get a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.chatbase.co/api/v1/chatbots/:chatbotId/contacts/:contactId",
+            "params": [
+              {
+                "name": "chatbotId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the chatbot."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the contact."
+              }
+            ]
+          },
+          "docs": "Get a contact"
+        },
+        {
+          "info": {
+            "name": "Update a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://www.chatbase.co/api/v1/chatbots/:chatbotId/contacts/:contactId",
+            "params": [
+              {
+                "name": "chatbotId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the chatbot."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the contact."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a contact"
+        },
+        {
+          "info": {
+            "name": "Delete a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://www.chatbase.co/api/v1/chatbots/:chatbotId/contacts/:contactId",
+            "params": [
+              {
+                "name": "chatbotId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the chatbot."
+              },
+              {
+                "name": "contactId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the contact."
+              }
+            ]
+          },
+          "docs": "Delete a contact"
+        },
+        {
+          "info": {
+            "name": "Get the custom-attribute schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.chatbase.co/api/v1/chatbots/:chatbotId/custom-attributes",
+            "params": [
+              {
+                "name": "chatbotId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the chatbot."
+              }
+            ]
+          },
+          "docs": "Get the custom-attribute schema"
+        },
+        {
+          "info": {
+            "name": "Create a custom attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.chatbase.co/api/v1/chatbots/:chatbotId/custom-attributes",
+            "params": [
+              {
+                "name": "chatbotId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the chatbot."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Define a new custom attribute on the contact schema for a chatbot."
+        },
+        {
+          "info": {
+            "name": "Update a custom attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://www.chatbase.co/api/v1/chatbots/:chatbotId/custom-attributes/:name",
+            "params": [
+              {
+                "name": "chatbotId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the chatbot."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the custom attribute to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a custom attribute"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

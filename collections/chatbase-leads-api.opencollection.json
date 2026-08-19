@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chatbase Chat Leads API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get leads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.chatbase.co/api/v1/get-leads",
+            "params": [
+              {
+                "name": "chatbotId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the chatbot to retrieve leads for."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve leads captured by a specific chatbot's lead form."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

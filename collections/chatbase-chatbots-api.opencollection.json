@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chatbase Chat Chatbots API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chatbots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a chatbot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.chatbase.co/api/v1/create-chatbot",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new chatbot/agent and train it from the supplied sources."
+        },
+        {
+          "info": {
+            "name": "Update and retrain a chatbot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.chatbase.co/api/v1/update-chatbot-data",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a chatbot, changing its name and/or replacing its training material. The agent is retrained on the new content."
+        },
+        {
+          "info": {
+            "name": "Update chatbot settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.chatbase.co/api/v1/update-chatbot-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update configuration settings for an existing chatbot."
+        },
+        {
+          "info": {
+            "name": "List chatbots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.chatbase.co/api/v1/get-chatbots"
+          },
+          "docs": "Retrieve all chatbots for the authenticated account."
+        },
+        {
+          "info": {
+            "name": "Delete a chatbot",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://www.chatbase.co/api/v1/delete-chatbot",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently delete a chatbot and all of its associated data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

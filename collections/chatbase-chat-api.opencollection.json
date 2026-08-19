@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chatbase Chat API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Message an agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.chatbase.co/api/v1/chat",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a message to a chatbot and receive a response. Provide the prior turns in the messages array (roles user and assistant). Set stream=true to receive the response word by word as a raw text stream instead of a single JSON body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

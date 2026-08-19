@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chatbase Chat Conversations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get conversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.chatbase.co/api/v1/get-conversations",
+            "params": [
+              {
+                "name": "chatbotId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the chatbot to retrieve conversations for."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive lower bound on conversation date (YYYY-MM-DD)."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Inclusive upper bound on conversation date (YYYY-MM-DD)."
+              },
+              {
+                "name": "filteredSources",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of sources to filter by (e.g. API, Widget or iframe)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of conversations per page."
+              }
+            ]
+          },
+          "docs": "Retrieve conversations for a specific chatbot, optionally filtered by date range and source, with pagination."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

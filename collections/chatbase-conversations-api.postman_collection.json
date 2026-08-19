@@ -1,0 +1,249 @@
+{
+  "item": [
+    {
+      "id": "d33ded83-5549-414d-bd65-034445b59b97",
+      "name": "Conversations",
+      "description": {
+        "content": "Retrieve conversation history for a chatbot.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c2b7904-51f1-4d44-9ec1-f7b75f0e96e3",
+          "name": "Get conversations",
+          "request": {
+            "name": "Get conversations",
+            "description": {
+              "content": "Retrieve conversations for a specific chatbot, optionally filtered by date range and source, with pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "get-conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chatbotId",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the chatbot to retrieve conversations for."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Inclusive lower bound on conversation date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "Inclusive upper bound on conversation date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "filteredSources",
+                  "value": "<string>",
+                  "description": "Comma-separated list of sources to filter by (e.g. API, Widget or iframe)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "20",
+                  "description": "Number of conversations per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e15bec9-c08a-48eb-b4a5-20965c08f9eb",
+              "name": "A paginated list of conversations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chatbotId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "filteredSources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"chatbotId\": \"string\",\n      \"source\": \"string\",\n      \"createdAt\": \"1994-09-11T15:21:46.303Z\",\n      \"messages\": [\n        {\n          \"role\": \"assistant\",\n          \"content\": \"string\"\n        },\n        {\n          \"role\": \"user\",\n          \"content\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"chatbotId\": \"string\",\n      \"source\": \"string\",\n      \"createdAt\": \"1954-02-01T09:40:31.491Z\",\n      \"messages\": [\n        {\n          \"role\": \"assistant\",\n          \"content\": \"string\"\n        },\n        {\n          \"role\": \"assistant\",\n          \"content\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5763f4e-2347-43f3-9dd6-9e96a482bddb",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "get-conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chatbotId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "filteredSources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.chatbase.co/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b68c14ef-297f-4ca6-928c-0938e928cb7f",
+    "name": "Chatbase Chat Conversations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Chatbase custom AI chatbot / AI agent platform. Message an agent (with streaming), create and retrain chatbots/agents, update settings, list and delete agents, manage agent images, retrieve conversation history and captured leads, and manage contacts and their custom-attribute schema. All requests are authenticated with a Bearer API key created in the Chatbase dashboard under Workspace Settings -> API Keys.\n\nContact Support:\n Name: Chatbase Support",
+      "type": "text/plain"
+    }
+  }
+}
