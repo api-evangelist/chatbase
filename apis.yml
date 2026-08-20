@@ -22,6 +22,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/chatbase.png
 tags:
+- Artificial Intelligence
+- Chatbots
+- AI Agent
+- Customer-Support
+- Conversational AI
+tags_raw:
 - AI
 - Chatbot
 - AI Agent
