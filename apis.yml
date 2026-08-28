@@ -7,6 +7,18 @@ description: Chatbase is a custom AI chatbot and AI agent platform for customer 
   site, and connect it to channels and tools. The Chatbase REST API lets developers
   message agents (with streaming), create and update chatbots/agents, retrieve
   conversations and leads, and manage contacts.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
