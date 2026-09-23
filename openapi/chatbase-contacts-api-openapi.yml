@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chatbase Chat Contacts API
+  title: Chatbase Contacts API
   description: REST API for the Chatbase custom AI chatbot / AI agent platform. Message an agent (with streaming), create and retrain chatbots/agents, update settings, list and delete agents, manage agent images, retrieve conversation history and captured leads, and manage contacts and their custom-attribute schema. All requests are authenticated with a Bearer API key created in the Chatbase dashboard under Workspace Settings -> API Keys.
   termsOfService: https://www.chatbase.co/legal/terms
   contact:
@@ -218,6 +218,37 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    Contact:
+      allOf:
+      - $ref: '#/components/schemas/ContactInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          createdAt:
+            type: string
+            format: date-time
+    ContactInput:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        customAttributes:
+          type: object
+          additionalProperties: true
+          description: Values for any custom attributes defined on the contact schema.
     CustomAttribute:
       type: object
       required:
@@ -243,44 +274,6 @@ components:
           example: success
         message:
           type: string
-    ContactInput:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-        customAttributes:
-          type: object
-          additionalProperties: true
-          description: Values for any custom attributes defined on the contact schema.
-    Contact:
-      allOf:
-      - $ref: '#/components/schemas/ContactInput'
-      - type: object
-        properties:
-          id:
-            type: string
-          createdAt:
-            type: string
-            format: date-time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     ContactIdPath:
       name: contactId
@@ -296,6 +289,13 @@ components:
       schema:
         type: string
       description: The ID of the chatbot.
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

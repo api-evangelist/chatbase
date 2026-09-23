@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Chatbase Chat API
   description: REST API for the Chatbase custom AI chatbot / AI agent platform. Message an agent (with streaming), create and retrain chatbots/agents, update settings, list and delete agents, manage agent images, retrieve conversation history and captured leads, and manage contacts and their custom-attribute schema. All requests are authenticated with a Bearer API key created in the Chatbase dashboard under Workspace Settings -> API Keys.
@@ -43,20 +43,23 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    ChatResponse:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The agent's generated response.
+        conversationId:
+          type: string
+          description: The conversation this turn belongs to.
     Message:
       type: object
       required:
@@ -101,22 +104,19 @@ components:
         model:
           type: string
           description: Optional model override for this request.
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-    ChatResponse:
-      type: object
-      properties:
-        text:
-          type: string
-          description: The agent's generated response.
-        conversationId:
-          type: string
-          description: The conversation this turn belongs to.
+  responses:
+    BadRequest:
+      description: The request was malformed or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
