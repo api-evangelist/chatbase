@@ -38,7 +38,7 @@ tags:
 - Artificial Intelligence
 - Chatbots
 - AI Agents
-- Customer-Support
+- Customer Support
 - Conversational AI
 tags_raw:
 - AI
@@ -46,6 +46,7 @@ tags_raw:
 - AI Agent
 - Customer Support
 - Conversational AI
+- Customer-Support
 created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.23'

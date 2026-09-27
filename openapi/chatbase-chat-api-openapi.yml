@@ -43,38 +43,20 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-    ChatResponse:
-      type: object
-      properties:
-        text:
-          type: string
-          description: The agent's generated response.
-        conversationId:
-          type: string
-          description: The conversation this turn belongs to.
-    Message:
-      type: object
-      required:
-      - role
-      - content
-      properties:
-        role:
-          type: string
-          enum:
-          - user
-          - assistant
-          description: Who sent the message. user is the human; assistant is the chatbot.
-        content:
-          type: string
-          description: The text content of the message.
     ChatRequest:
       type: object
       required:
@@ -104,19 +86,37 @@ components:
         model:
           type: string
           description: Optional model override for this request.
-  responses:
-    BadRequest:
-      description: The request was malformed or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    ChatResponse:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The agent's generated response.
+        conversationId:
+          type: string
+          description: The conversation this turn belongs to.
+    Message:
+      type: object
+      required:
+      - role
+      - content
+      properties:
+        role:
+          type: string
+          enum:
+          - user
+          - assistant
+          description: Who sent the message. user is the human; assistant is the chatbot.
+        content:
+          type: string
+          description: The text content of the message.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

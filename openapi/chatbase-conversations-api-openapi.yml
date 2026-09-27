@@ -79,13 +79,21 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
+    Message:
       type: object
+      required:
+      - role
+      - content
       properties:
-        error:
+        role:
           type: string
-        message:
+          enum:
+          - user
+          - assistant
+          description: Who sent the message. user is the human; assistant is the chatbot.
+        content:
           type: string
+          description: The text content of the message.
     Conversation:
       type: object
       properties:
@@ -103,21 +111,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Message'
-    Message:
+    Error:
       type: object
-      required:
-      - role
-      - content
       properties:
-        role:
+        error:
           type: string
-          enum:
-          - user
-          - assistant
-          description: Who sent the message. user is the human; assistant is the chatbot.
-        content:
+        message:
           type: string
-          description: The text content of the message.
   responses:
     Unauthorized:
       description: Missing or invalid API key.

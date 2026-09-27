@@ -218,23 +218,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-    Contact:
-      allOf:
-      - $ref: '#/components/schemas/ContactInput'
-      - type: object
-        properties:
-          id:
-            type: string
-          createdAt:
-            type: string
-            format: date-time
     ContactInput:
       type: object
       properties:
@@ -249,6 +232,31 @@ components:
           type: object
           additionalProperties: true
           description: Values for any custom attributes defined on the contact schema.
+    Status:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+    Contact:
+      allOf:
+      - $ref: '#/components/schemas/ContactInput'
+      - type: object
+        properties:
+          id:
+            type: string
+          createdAt:
+            type: string
+            format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
     CustomAttribute:
       type: object
       required:
@@ -266,22 +274,7 @@ components:
           - boolean
           - date
           description: The data type of the attribute.
-    Status:
-      type: object
-      properties:
-        status:
-          type: string
-          example: success
-        message:
-          type: string
   parameters:
-    ContactIdPath:
-      name: contactId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the contact.
     ChatbotIdPath:
       name: chatbotId
       in: path
@@ -289,6 +282,13 @@ components:
       schema:
         type: string
       description: The ID of the chatbot.
+    ContactIdPath:
+      name: contactId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the contact.
   responses:
     Unauthorized:
       description: Missing or invalid API key.
