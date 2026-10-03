@@ -137,31 +137,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    CreateChatbotRequest:
-      type: object
-      required:
-      - chatbotName
-      - sourceText
-      properties:
-        chatbotName:
-          type: string
-          description: Display name of the new chatbot.
-        sourceText:
-          type: string
-          description: Training text the agent is built from.
-        urlsToScrape:
-          type: array
-          items:
-            type: string
-          description: Optional list of URLs to crawl as training sources.
-    Status:
-      type: object
-      properties:
-        status:
-          type: string
-          example: success
-        message:
-          type: string
     UpdateChatbotDataRequest:
       type: object
       required:
@@ -190,6 +165,38 @@ components:
         createdAt:
           type: string
           format: date-time
+    CreateChatbotRequest:
+      type: object
+      required:
+      - chatbotName
+      - sourceText
+      properties:
+        chatbotName:
+          type: string
+          description: Display name of the new chatbot.
+        sourceText:
+          type: string
+          description: Training text the agent is built from.
+        urlsToScrape:
+          type: array
+          items:
+            type: string
+          description: Optional list of URLs to crawl as training sources.
+    Status:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
     UpdateChatbotSettingsRequest:
       type: object
       required:
@@ -211,22 +218,15 @@ components:
           enum:
           - private
           - public
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
   responses:
-    Unauthorized:
-      description: Missing or invalid API key.
+    BadRequest:
+      description: The request was malformed or missing required fields.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or missing required fields.
+    Unauthorized:
+      description: Missing or invalid API key.
       content:
         application/json:
           schema:
