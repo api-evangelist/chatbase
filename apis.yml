@@ -192,6 +192,9 @@ apis:
   - type: APIReference
     url: https://www.chatbase.co/docs/developer-guides/api/get-leads
 common:
+- type: CapabilityMap
+  url: capabilities/chatbase-capability-edges.yml
+  name: Chatbase Business Capability Map
 - type: AgenticAccess
   url: agentic-access/chatbase-agentic-access.yml
 - type: TrustCenter
