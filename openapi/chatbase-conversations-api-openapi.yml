@@ -78,13 +78,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -93,21 +86,6 @@ components:
           type: string
         message:
           type: string
-    Message:
-      type: object
-      required:
-      - role
-      - content
-      properties:
-        role:
-          type: string
-          enum:
-          - user
-          - assistant
-          description: Who sent the message. user is the human; assistant is the chatbot.
-        content:
-          type: string
-          description: The text content of the message.
     Conversation:
       type: object
       properties:
@@ -125,6 +103,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Message'
+    Message:
+      type: object
+      required:
+      - role
+      - content
+      properties:
+        role:
+          type: string
+          enum:
+          - user
+          - assistant
+          description: Who sent the message. user is the human; assistant is the chatbot.
+        content:
+          type: string
+          description: The text content of the message.
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

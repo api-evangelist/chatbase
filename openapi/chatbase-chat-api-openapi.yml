@@ -44,6 +44,37 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ChatResponse:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The agent's generated response.
+        conversationId:
+          type: string
+          description: The conversation this turn belongs to.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    Message:
+      type: object
+      required:
+      - role
+      - content
+      properties:
+        role:
+          type: string
+          enum:
+          - user
+          - assistant
+          description: Who sent the message. user is the human; assistant is the chatbot.
+        content:
+          type: string
+          description: The text content of the message.
     ChatRequest:
       type: object
       required:
@@ -73,37 +104,6 @@ components:
         model:
           type: string
           description: Optional model override for this request.
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-    Message:
-      type: object
-      required:
-      - role
-      - content
-      properties:
-        role:
-          type: string
-          enum:
-          - user
-          - assistant
-          description: Who sent the message. user is the human; assistant is the chatbot.
-        content:
-          type: string
-          description: The text content of the message.
-    ChatResponse:
-      type: object
-      properties:
-        text:
-          type: string
-          description: The agent's generated response.
-        conversationId:
-          type: string
-          description: The conversation this turn belongs to.
   responses:
     BadRequest:
       description: The request was malformed or missing required fields.

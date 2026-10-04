@@ -137,6 +137,21 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Status:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
     UpdateChatbotDataRequest:
       type: object
       required:
@@ -182,21 +197,6 @@ components:
           items:
             type: string
           description: Optional list of URLs to crawl as training sources.
-    Status:
-      type: object
-      properties:
-        status:
-          type: string
-          example: success
-        message:
-          type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
     UpdateChatbotSettingsRequest:
       type: object
       required:
