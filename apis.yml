@@ -192,6 +192,8 @@ apis:
   - type: APIReference
     url: https://www.chatbase.co/docs/developer-guides/api/get-leads
 common:
+- type: Pricing
+  url: https://www.chatbase.co/pricing
 - type: CapabilityMap
   url: capabilities/chatbase-capability-edges.yml
   name: Chatbase Business Capability Map
