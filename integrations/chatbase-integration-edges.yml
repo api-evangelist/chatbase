@@ -30,7 +30,47 @@ edges:
   - namespace-domain
   detected_by: sweep-agent-tools.py
   first_seen: '2026-10-14'
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/chatbase
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - Chatbase
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  publisher_verified:
+  - Built for Shopify
+- partner_name: Stripe (own)
+  partner: stripe
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.stripe.com/apps/chatbase
+  mirror_of: stripe/integrations/stripe-integration-edges.yml
+  apps:
+  - Chatbase
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: developer_tools, productivity
 generated: '2026-10-14'
 method: searched
 checked:
 - https://registry.modelcontextprotocol.io/v0/servers
+- shopify/integrations/shopify-integration-edges.yml
+- stripe/integrations/stripe-integration-edges.yml
+source:
+- shopify/integrations/shopify-integration-edges.yml
+- stripe/integrations/stripe-integration-edges.yml
