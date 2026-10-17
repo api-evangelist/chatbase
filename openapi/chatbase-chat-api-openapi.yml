@@ -44,22 +44,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ChatResponse:
-      type: object
-      properties:
-        text:
-          type: string
-          description: The agent's generated response.
-        conversationId:
-          type: string
-          description: The conversation this turn belongs to.
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
     Message:
       type: object
       required:
@@ -75,6 +59,22 @@ components:
         content:
           type: string
           description: The text content of the message.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    ChatResponse:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The agent's generated response.
+        conversationId:
+          type: string
+          description: The conversation this turn belongs to.
     ChatRequest:
       type: object
       required:
@@ -105,14 +105,14 @@ components:
           type: string
           description: Optional model override for this request.
   responses:
-    BadRequest:
-      description: The request was malformed or missing required fields.
+    Unauthorized:
+      description: Missing or invalid API key.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
+    BadRequest:
+      description: The request was malformed or missing required fields.
       content:
         application/json:
           schema:

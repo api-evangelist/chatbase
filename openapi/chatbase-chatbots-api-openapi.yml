@@ -137,6 +137,20 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    UpdateChatbotDataRequest:
+      type: object
+      required:
+      - chatbotId
+      properties:
+        chatbotId:
+          type: string
+          description: The ID of the chatbot to update.
+        chatbotName:
+          type: string
+          description: New display name for the chatbot.
+        sourceText:
+          type: string
+          description: Replacement training text; the agent is retrained on it.
     Status:
       type: object
       properties:
@@ -152,20 +166,27 @@ components:
           type: string
         message:
           type: string
-    UpdateChatbotDataRequest:
+    UpdateChatbotSettingsRequest:
       type: object
       required:
       - chatbotId
       properties:
         chatbotId:
           type: string
-          description: The ID of the chatbot to update.
         chatbotName:
           type: string
-          description: New display name for the chatbot.
-        sourceText:
+        model:
           type: string
-          description: Replacement training text; the agent is retrained on it.
+        temperature:
+          type: number
+        instructions:
+          type: string
+          description: System prompt / base instructions for the agent.
+        visibility:
+          type: string
+          enum:
+          - private
+          - public
     Chatbot:
       type: object
       properties:
@@ -197,36 +218,15 @@ components:
           items:
             type: string
           description: Optional list of URLs to crawl as training sources.
-    UpdateChatbotSettingsRequest:
-      type: object
-      required:
-      - chatbotId
-      properties:
-        chatbotId:
-          type: string
-        chatbotName:
-          type: string
-        model:
-          type: string
-        temperature:
-          type: number
-        instructions:
-          type: string
-          description: System prompt / base instructions for the agent.
-        visibility:
-          type: string
-          enum:
-          - private
-          - public
   responses:
-    BadRequest:
-      description: The request was malformed or missing required fields.
+    Unauthorized:
+      description: Missing or invalid API key.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
+    BadRequest:
+      description: The request was malformed or missing required fields.
       content:
         application/json:
           schema:
