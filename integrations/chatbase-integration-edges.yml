@@ -107,6 +107,23 @@ edges:
   detected: '2026-10-15'
   detected_by: mirror-platform-listings.py
   category: WordPress plugin
+- partner_name: Zendesk (own)
+  partner: zendesk
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.zendesk.com/marketplace/apps/support/1157915/chatbase/
+  mirror_of: zendesk/integrations/zendesk-integration-edges.yml
+  apps:
+  - Chatbase
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
+  category: AI and Bots
 generated: '2026-10-14'
 method: searched
 checked:
@@ -115,6 +132,7 @@ checked:
 - shopify/integrations/shopify-integration-edges.yml
 - stripe/integrations/stripe-integration-edges.yml
 - wordpress/integrations/wordpress-integration-edges.yml
+- zendesk/integrations/zendesk-integration-edges.yml
 source:
 - shopify/integrations/shopify-integration-edges.yml
 - stripe/integrations/stripe-integration-edges.yml
