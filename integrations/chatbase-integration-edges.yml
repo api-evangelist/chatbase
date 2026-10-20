@@ -1,3 +1,58 @@
+generated: '2026-10-20'
+method: searched
+source:
+- shopify/integrations/shopify-integration-edges.yml
+- stripe/integrations/stripe-integration-edges.yml
+- https://zapier.com/apps/chatbase/integrations
+- https://n8n.io/integrations/chatbase/
+checked:
+- https://registry.modelcontextprotocol.io/v0/servers
+- https://zapier.com/api/v4/apps/
+- shopify/integrations/shopify-integration-edges.yml
+- stripe/integrations/stripe-integration-edges.yml
+- wordpress/integrations/wordpress-integration-edges.yml
+- zendesk/integrations/zendesk-integration-edges.yml
+- https://composio.dev/toolkits/chatbase
+- https://monid.ai/tools/chatbase
+- https://n8n.io/integrations/chatbase/
+- https://zapier.com/apps/chatbase/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: chatbase
+  url: https://zapier.com/apps/chatbase/integrations
+  external_url: https://www.chatbase.co/
+  partner_tier: BRONZE
+  triggers:
+  - key: form_submission
+    label: Form Submission
+  actions:
+  - key: send_prompt
+    label: Send Prompt
+  searches: []
+- marketplace: n8n
+  channel: open-source-node
+  app: chatbase
+  url: https://n8n.io/integrations/chatbase/
+  identity: title
+  pair_pages: 15
+  pairs:
+  - discord
+  - github
+  - gmail
+  - google-calendar
+  - google-drive
+  - google-sheets
+  - http-request
+  - microsoft-excel
+  - mysql
+  - notion
+  - openai
+  - postgres
+  - slack
+  - supabase
+  - telegram
 edges:
 - partner_name: Shopify (own)
   partner: shopify
@@ -34,37 +89,6 @@ edges:
   detected: '2026-10-15'
   detected_by: mirror-platform-listings.py
   category: developer_tools, productivity
-- partner_name: MCP Registry
-  partner: mcp
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=co.chatbase
-  contract_reference:
-    register: registry.modelcontextprotocol.io
-    spec_file: null
-    role: mcp-server-listing
-    registered_name: co.chatbase/chatbase
-    register_id: co.chatbase/chatbase
-    detected_by: sweep-agent-tools.py
-    detected: '2026-10-15'
-  mcp_registry:
-    servers:
-    - co.chatbase/chatbase
-    hosted_remote: 1
-    local_package: 0
-    transports:
-      streamable-http: 1
-    auth_declared: 0
-    catalog_declared: false
-    namespace_domains:
-    - chatbase.co
-  matched_by:
-  - namespace-domain
-  detected_by: sweep-agent-tools.py
-  first_seen: '2026-10-14'
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -124,15 +148,456 @@ edges:
   detected: '2026-10-19'
   detected_by: mirror-platform-listings.py
   category: AI and Bots
-generated: '2026-10-14'
-method: searched
-checked:
-- https://registry.modelcontextprotocol.io/v0/servers
-- https://zapier.com/api/v4/apps/
-- shopify/integrations/shopify-integration-edges.yml
-- stripe/integrations/stripe-integration-edges.yml
-- wordpress/integrations/wordpress-integration-edges.yml
-- zendesk/integrations/zendesk-integration-edges.yml
-source:
-- shopify/integrations/shopify-integration-edges.yml
-- stripe/integrations/stripe-integration-edges.yml
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=co.chatbase
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: co.chatbase/chatbase
+    register_id: co.chatbase/chatbase
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-19'
+  mcp_registry:
+    servers:
+    - co.chatbase/chatbase
+    hosted_remote: 1
+    local_package: 0
+    transports:
+      streamable-http: 1
+    auth_declared: 0
+    catalog_declared: false
+    namespace_domains:
+    - chatbase.co
+  matched_by:
+  - namespace-domain
+  detected_by: sweep-agent-tools.py
+  first_seen: '2026-10-14'
+- partner_name: Gmail
+  partner: gmail
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/gmail
+  direction: third-party
+  category: Email
+  partner_url: https://mail.google.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: WhatsApp Notifications
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/whatsapp-notifications
+  direction: third-party
+  category: Communication
+  partner_url: null
+- partner_name: Microsoft Outlook
+  partner: microsoft-outlook
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/microsoft-outlook
+  direction: third-party
+  category: Calendar
+  partner_url: https://outlook.live.com/
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Google Calendar
+  partner: google-calendar
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/google-calendar
+  direction: third-party
+  category: Calendar
+  partner_url: https://calendar.google.com/
+- partner_name: Telegram
+  partner: telegram
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/telegram
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://telegram.org/
+- partner_name: Manychat
+  partner: manychat
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/manychat
+  direction: third-party
+  category: Social Media Marketing
+  partner_url: https://manychat.com/
+- partner_name: Facebook Messenger
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/facebook-messenger
+  direction: third-party
+  category: Facebook
+  partner_url: https://www.messenger.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Google Docs
+  partner: google-docs
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/google-docs
+  direction: third-party
+  category: Documents
+  partner_url: http://google.com/
+- partner_name: Twilio
+  partner: twilio
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/twilio
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://www.twilio.com/
+- partner_name: Google Forms
+  partner: google-forms
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/google-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: Google Drive
+  partner: google-drive
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/google-drive
+  direction: third-party
+  category: File Management & Storage
+  partner_url: https://www.google.com/drive/
+- partner_name: Calendly
+  partner: calendly
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/calendly
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://calendly.com/?utm_medium=partner&utm_source=zapier&utm_campaign=main_partner_page&utm_content=main_inbound_link
+- partner_name: Zapier Chatbots
+  partner: zapier
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/zapier-chatbots
+  direction: third-party
+  category: AI Chatbots
+  partner_url: https://zapier.com/blog/create-custom-ai-chatbots-with-interfaces/
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
+- partner_name: Instagram for Business
+  partner: instagram
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/instagram-for-business
+  direction: third-party
+  category: Facebook
+  partner_url: https://instagram.com/
+- partner_name: Shopify
+  partner: shopify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/shopify
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.shopify.com/
+- partner_name: Wix
+  partner: wix
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/wix
+  direction: third-party
+  category: Website Builders
+  partner_url: https://www.wix.com/
+- partner_name: Freshdesk
+  partner: freshdesk
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/freshdesk
+  direction: third-party
+  category: Customer Support
+  partner_url: http://freshdesk.com/
+- partner_name: Microsoft Excel
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/excel
+  direction: third-party
+  category: Microsoft
+  partner_url: https://zapier.com/office.com
+- partner_name: Text to Speech PRO
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/text-to-speech-pro
+  direction: third-party
+  category: Developer Tools
+  partner_url: https://store.appvidlab.com/api-text-to-speech-pro/
+- partner_name: Stripe
+  partner: stripe
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/stripe
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://stripe.com/
+- partner_name: WordPress
+  partner: wordpress
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/wordpress
+  direction: third-party
+  category: Website Builders
+  partner_url: https://wordpress.org/
+- partner_name: Microsoft Teams
+  partner: microsoft-teams
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/microsoft-teams
+  direction: third-party
+  category: Microsoft
+  partner_url: https://products.office.com/en-us/microsoft-teams/group-chat-software
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Quo
+  partner: quo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/quo
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://quo.com/?utm_source=partnership&utm_medium=partner&utm_campaign=zapier
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: Intercom
+  partner: intercom
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/chatbase/integrations/intercom
+  direction: third-party
+  category: Customer Support
+  partner_url: https://www.intercom.com/welcome-to-intercom?utm_source=external-website&utm_medium=partner&utm_campaign=20220503_all_oc_all_global_gl_all_all_par_extmktplc&utm_term=zapier
+templates:
+- title: Send messages in WhatsApp Notifications for new form submissions in Chatbase
+  url: https://zapier.com/apps/chatbase/integrations/whatsapp-notifications/1689456/send-messages-in-whatsapp-notifications-for-new-form-submissions-in-chatbase
+  apps:
+  - chatbase
+  - whatsapp-notifications
+- title: Send outbound emails in Email by Zapier for new form submissions in Chatbase
+  url: https://zapier.com/apps/chatbase/integrations/email/1687336/send-outbound-emails-in-email-by-zapier-for-new-form-submissions-in-chatbase
+  apps:
+  - chatbase
+  - email
+- title: Create new Airtable records from new Chatbase form submissions
+  url: https://zapier.com/apps/airtable/integrations/chatbase/1762167/create-new-airtable-records-from-new-chatbase-form-submissions
+  apps:
+  - chatbase
+  - airtable
+- title: Manage new Chatbase form submissions by creating or updating contacts in ActiveCampaign
+  url: https://zapier.com/apps/activecampaign/integrations/chatbase/1768830/manage-new-chatbase-form-submissions-by-creating-or-updating-contacts-in-activecampaign
+  apps:
+  - chatbase
+  - activecampaign
+- title: '"create or update HubSpot contacts from new Chatbase form submissions"'
+  url: https://zapier.com/apps/chatbase/integrations/hubspot/1698340/create-or-update-hubspot-contacts-from-new-chatbase-form-submissions
+  apps:
+  - chatbase
+  - hubspot
+- title: Send prompts in Chatbase when new messages are sent to your page in Facebook Messenger
+  url: https://zapier.com/apps/chatbase/integrations/facebook-messenger/1584701/send-prompts-in-chatbase-when-new-messages-are-sent-to-your-page-in-facebook-messenger
+  apps:
+  - facebook-messenger
+  - chatbase
+- title: Send prompts in Chatbase for new chat messages in Microsoft Teams
+  url: https://zapier.com/apps/chatbase/integrations/microsoft-teams/1235213/send-prompts-in-chatbase-for-new-chat-messages-in-microsoft-teams
+  apps:
+  - microsoft-teams
+  - chatbase
+- title: Send new SimpleTexting messages to Chatbase as prompts
+  url: https://zapier.com/apps/chatbase/integrations/simpletexting/1265653/send-new-simpletexting-messages-to-chatbase-as-prompts
+  apps:
+  - simpletexting
+  - chatbase
+- title: Send prompts in Chatbase for every new event in Google Calendar
+  url: https://zapier.com/apps/chatbase/integrations/google-calendar/1570545/send-prompts-in-chatbase-for-every-new-event-in-google-calendar
+  apps:
+  - google-calendar
+  - chatbase
+- title: Send prompts in Chatbase whenever new documents are created in Google Docs
+  url: https://zapier.com/apps/chatbase/integrations/google-docs/1571836/send-prompts-in-chatbase-whenever-new-documents-are-created-in-google-docs
+  apps:
+  - google-docs
+  - chatbase
+- title: Send AI-generated responses to Microsoft Outlook emails
+  url: https://zapier.com/apps/microsoft-outlook/integrations/microsoft-outlook/1575307/send-ai-generated-responses-to-microsoft-outlook-emails
+  apps:
+  - microsoft-outlook
+  - chatbase
+- title: Add AI-generated instructions to Jira tickets with Chatbase
+  url: https://zapier.com/apps/jira-software-cloud/integrations/jira-software-cloud/1575315/add-ai-generated-instructions-to-jira-tickets-with-chatbase
+  apps:
+  - jira-software-cloud
+  - chatbase
+template_total: 141
