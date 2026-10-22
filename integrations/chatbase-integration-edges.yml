@@ -17,6 +17,7 @@ checked:
 - https://n8n.io/integrations/chatbase/
 - https://zapier.com/apps/chatbase/integrations
 - hubspot/integrations/hubspot-integration-edges.yml
+- vercel/integrations/vercel-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -557,6 +558,24 @@ edges:
   detected: '2026-10-21'
   detected_by: mirror-platform-listings.py
   category: HELP_DESK
+- partner_name: Vercel (own)
+  partner: vercel
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://vercel.com/marketplace/chatbase
+  mirror_of: vercel/integrations/vercel-integration-edges.yml
+  apps:
+  - Chatbase
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Agents Support Agent
+  partner_tier: native
 templates:
 - title: Send messages in WhatsApp Notifications for new form submissions in Chatbase
   url: https://zapier.com/apps/chatbase/integrations/whatsapp-notifications/1689456/send-messages-in-whatsapp-notifications-for-new-form-submissions-in-chatbase
