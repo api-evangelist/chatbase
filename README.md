@@ -1,4 +1,4 @@
-# Chatbase (chatbase)
+# Chatbase
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,139 +66,127 @@
 
 Chatbase is a custom AI chatbot and AI agent platform for customer support. Teams train an agent on their own content (websites, files, Q&A), embed it on their site, and connect it to channels and tools. The Chatbase REST API lets developers message agents (with streaming), create and update chatbots/agents, retrieve conversations and leads, and manage contacts.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/chatbase/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/chatbase/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · Chatbots · AI Agents · Customer Service · Conversational AI
 
-## Tags
+## Chatbase on APIs.io
 
-- AI
-- Chatbot
-- AI Agent
-- Customer Support
-- Conversational AI
+Everything profiled for Chatbase is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/chatbase/](https://apis.io/providers/chatbase/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Chatbase Chat API](https://apis.io/apis/chatbase/chatbase-chat-api/) — Message an agent and receive a response, with optional streaming.
+- [Chatbase Chatbots API](https://apis.io/apis/chatbase/chatbase-chatbots-api/) — Create, retrain, configure, list, and delete chatbots/agents.
+- [Chatbase Contacts API](https://apis.io/apis/chatbase/chatbase-contacts-api/) — Manage contacts and custom attributes for a chatbot.
+- [Chatbase Conversations API](https://apis.io/apis/chatbase/chatbase-conversations-api/) — Retrieve conversation history for a chatbot.
+- [Chatbase Leads API](https://apis.io/apis/chatbase/chatbase-leads-api/) — Retrieve leads captured by a chatbot.
 
-## APIs
+### Published properties
 
-### Chatbase Chat API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Send a message to a Chatbase agent and receive a response. Accepts a messages array with user and assistant roles, supports continuing an existing conversation, temperature control, and word-by-word streaming via stream=true.
+#### Agentic access (1)
 
-- **Human URL:** [https://www.chatbase.co/docs/developer-guides/api-integration](https://www.chatbase.co/docs/developer-guides/api-integration)
-- **Base URL:** `https://www.chatbase.co/api/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Chatbase Agentic Access](https://apis.io/agentic-access/chatbase/chatbase-agentic-access/)
 
-- Chat
-- Messages
-- Streaming
+#### Collections (6)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://www.chatbase.co/docs/developer-guides/api-integration)
-- [API Reference](https://www.chatbase.co/docs/developer-guides/api/chat)
-- [OpenAPI](openapi/chatbase-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/chatbase.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/chatbase.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Chatbase API](https://apis.io/collections/chatbase/open-chatbase/)
+- [Chatbase Chat API](https://apis.io/collections/chatbase/open-chatbase-chat-api/)
+- [Chatbase Chat Chatbots API](https://apis.io/collections/chatbase/open-chatbase-chatbots-api/)
+- [Chatbase Chat Contacts API](https://apis.io/collections/chatbase/open-chatbase-contacts-api/)
+- [Chatbase Chat Conversations API](https://apis.io/collections/chatbase/open-chatbase-conversations-api/)
+- [Chatbase Chat Leads API](https://apis.io/collections/chatbase/open-chatbase-leads-api/)
 
-### Chatbase Chatbots and Agents API
+#### Security (4)
 
-Programmatically create chatbots/agents from training text, retrain and rename them, update settings, list all agents on the account, delete an agent, and manage agent icons and profile pictures.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://www.chatbase.co/docs/developer-guides/api-integration](https://www.chatbase.co/docs/developer-guides/api-integration)
-- **Base URL:** `https://www.chatbase.co/api/v1`
+- [Chatbase Authentication](https://apis.io/security/chatbase/chatbase-authentication/)
+- [Chatbase Domain Security](https://apis.io/security/chatbase/chatbase-domain-security/)
+- [Chatbase Trust Center](https://apis.io/security/chatbase/chatbase-trust-center/)
+- [Chatbase Vulnerability Disclosure](https://apis.io/security/chatbase/chatbase-vulnerability-disclosure/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Chatbots
-- Agents
-- Management
+Published plans, tiers and prices.
 
-#### Properties
+- [Chatbase Plans Pricing](https://apis.io/plans/chatbase/chatbase-plans-pricing/)
 
-- [Documentation](https://www.chatbase.co/docs/developer-guides/api-integration)
-- [API Reference](https://www.chatbase.co/docs/developer-guides/api/create-chatbot)
-- [OpenAPI](openapi/chatbase-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/chatbase.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/chatbase.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Chatbase Conversations API
+Published request limits.
 
-Retrieve a paginated history of conversations for a specific chatbot, filterable by date range and source, with full message transcripts.
+- [Chatbase Rate Limits](https://apis.io/rate-limits/chatbase/chatbase-rate-limits/)
 
-- **Human URL:** [https://www.chatbase.co/docs/developer-guides/api/get-conversations](https://www.chatbase.co/docs/developer-guides/api/get-conversations)
-- **Base URL:** `https://www.chatbase.co/api/v1`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Conversations
-- History
-- Transcripts
+- [Chatbase Finops](https://apis.io/finops/chatbase/chatbase-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://www.chatbase.co/docs/developer-guides/api/get-conversations)
-- [API Reference](https://www.chatbase.co/docs/developer-guides/api/get-conversations)
-- [OpenAPI](openapi/chatbase-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/chatbase.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/chatbase.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Chatbase Sources and Data API
-
-Update and retrain an agent with new training content, and manage contacts and their custom-attribute schema for a chatbot (create, list, get, update, and delete contacts and custom attributes).
-
-- **Human URL:** [https://www.chatbase.co/docs/developer-guides/api-integration](https://www.chatbase.co/docs/developer-guides/api-integration)
-- **Base URL:** `https://www.chatbase.co/api/v1`
-
-#### Tags
-
-- Sources
-- Training Data
-- Contacts
-
-#### Properties
-
-- [Documentation](https://www.chatbase.co/docs/developer-guides/api-integration)
-- [API Reference](https://www.chatbase.co/docs/developer-guides/api/update-chatbot-data)
-- [OpenAPI](openapi/chatbase-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/chatbase.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/chatbase.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Chatbase Leads API
-
-Retrieve leads collected by a chatbot's lead-capture form for a specific chatbot, returning name, email, phone, and submission metadata.
-
-- **Human URL:** [https://www.chatbase.co/docs/developer-guides/api/get-leads](https://www.chatbase.co/docs/developer-guides/api/get-leads)
-- **Base URL:** `https://www.chatbase.co/api/v1`
-
-#### Tags
-
-- Leads
-- Capture
-- CRM
-
-#### Properties
-
-- [Documentation](https://www.chatbase.co/docs/developer-guides/api/get-leads)
-- [API Reference](https://www.chatbase.co/docs/developer-guides/api/get-leads)
-- [OpenAPI](openapi/chatbase-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/chatbase.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/chatbase.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/chatbase)
-- [LinkedIn](https://www.linkedin.com/company/chatbase)
 - [Website](https://www.chatbase.co)
 - [Documentation](https://www.chatbase.co/docs)
-- [Plans](plans/chatbase-plans-pricing.yml)
-- [Rate Limits](rate-limits/chatbase-rate-limits.yml)
-- [Fin Ops](finops/chatbase-finops.yml)
+- [Pricing](https://www.chatbase.co/pricing)
+- [Blog](https://www.chatbase.co/blog)
+- [GitHub](https://github.com/chatbase)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 35.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 50.2 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 25.0 |
+| Access clarity | 50.0 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.9** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/chatbase/](https://apis.io/providers/chatbase/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Chatbase: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/chatbase/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
